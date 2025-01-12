@@ -9,7 +9,7 @@ libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libglu1-mesa-d
 # Build
 
 ```
-cmake -B ./build --clean-first
+cmake --build ./build --clean-first
 ```
 
 # Run
