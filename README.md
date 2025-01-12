@@ -15,5 +15,5 @@ cmake --build ./build --clean-first
 # Run
 
 ```
-./build/engine
+./build/basic
 ```
