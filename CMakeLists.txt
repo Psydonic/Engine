@@ -19,7 +19,7 @@ add_library(engine)
 set(RAYLIB_VERSION 5.5)
 
 # Find and include raylib, or build it if not found
-find_package(raylib)
+find_package(raylib ${RAYLIB_VERSION} QUIET)
 if(NOT raylib_FOUND)
     message(STATUS "raylib not found, building from source...")
     include(FetchContent)
