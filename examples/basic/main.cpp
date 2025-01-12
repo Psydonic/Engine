@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "Screen.h"
+#include "Screens/Screen.h"
 
 int main(void) {
 
