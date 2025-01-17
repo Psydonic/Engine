@@ -9,6 +9,8 @@
 
 class Widget {
 public: 
+  Widget(const Vector2& pos, const Vector2& s) : position(pos), size(s) {}
+
   virtual void draw() const = 0;
   virtual void update() = 0;
 
