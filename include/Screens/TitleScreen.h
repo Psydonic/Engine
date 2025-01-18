@@ -1,7 +1,8 @@
-#include "../Screen.h"
-#include "../Widgets/Label.h"
+#include "Screen.h"
+#include "../UI/Widgets/Label.h"
 
-class TitleScreen : public Screen {
+class TitleScreen : public Screen 
+{
 public:
   TitleScreen(const char* titleName);
   void update() const override;

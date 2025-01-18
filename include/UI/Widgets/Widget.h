@@ -15,10 +15,14 @@ public:
   virtual void update() = 0;
 
   void setPosition(const Vector2& pos) { position = pos; }
+  void setPosition(int x, int y) { position = {(float)x, (float)y}; }
   void setSize(const Vector2& s) { size = s; }
 
   const Vector2& getPosition() const { return position; }
   const Vector2& getSize() const { return size; }
+
+  float getWidth() const { return size.x; }
+  float getHeight() const { return size.y; }
 
 protected:
   Vector2 position;

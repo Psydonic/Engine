@@ -18,7 +18,7 @@ public:
   void update() override {}
   
   // Setters
-  void setText(const char* text) { this->text = text; }
+  void setText(const std::string text ) { this->text = text; }
   void setTextSize(int fontSize) { this->textSize = fontSize; }
   void setFont(Font font) { this->font = font; }
 
