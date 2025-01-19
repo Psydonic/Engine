@@ -1,17 +1,16 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-#include "UI/Widgets/Layout.h"
+#include "../UI/Widgets/Layout.h"
 
 // This is a base class for all screens in the game
 // It is not abstract so that it can be used as a placeholder
 class Screen {
   public:
-    Screen() : parentLayout() {};
-    virtual ~Screen() {};
+    Screen(); 
 
-    void update() const {};
-    void render() const {};
+    void update();
+    void draw();
 
   protected:
     Layout parentLayout;

@@ -9,7 +9,7 @@ enum class Alignment
 {
   Start,
   Center,
-  End,
+  End
 };
 
 struct Alignment2

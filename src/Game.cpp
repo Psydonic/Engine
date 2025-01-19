@@ -2,13 +2,9 @@
 #include "raylib.h"
 
 // Constructor with start screen
-Game::Game(int screenWidth, int screenHeight, const Screen *startScreen)
-    : screenWidth(screenWidth), screenHeight(screenHeight), m_currentScreen(startScreen) {}
-
-// Destructor
-Game::~Game() {}
-
-void Game::initialize() const {
+Game::Game(int screenWidth, int screenHeight, Screen *startScreen)
+    : screenWidth(screenWidth), screenHeight(screenHeight), m_currentScreen(startScreen) 
+{
   InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
   SetTargetFPS(60);
   
@@ -21,8 +17,11 @@ void Game::initialize() const {
   CloseWindow();
 }
 
+// Destructor
+Game::~Game() {}
+
 // Function to update the game state
-void Game::update() const {
+void Game::update(){
   m_currentScreen->update();
 }
 
@@ -31,7 +30,7 @@ void Game::render() const {
   BeginDrawing();
   ClearBackground(RAYWHITE);
 
-  m_currentScreen->render();
+  m_currentScreen->draw();
 
   EndDrawing();
 }

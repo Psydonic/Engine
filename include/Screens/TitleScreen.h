@@ -1,3 +1,6 @@
+#pragma once
+
+#endif  // INCLUDE/home/psydonic/code/Engine/include/ScreensTitleScreenTitleScreen.h_
 #include "Screen.h"
 #include "../UI/Widgets/Label.h"
 

@@ -1,4 +1,6 @@
-#include "../Screen.h"
+#pragma once
+
+#include "Screen.h"
 
 class LogoScreen : public Screen {
   public:
