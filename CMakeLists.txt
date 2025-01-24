@@ -23,10 +23,13 @@ find_package(raylib ${RAYLIB_VERSION} QUIET)
 if(NOT raylib_FOUND)
     message(STATUS "raylib not found, building from source...")
     include(FetchContent)
+
+    Set(FETCHCONTENT_QUIET FALSE)
     FetchContent_Declare(
         raylib
         GIT_REPOSITORY https://github.com/raysan5/raylib.git
         GIT_TAG ${RAYLIB_VERSION}
+        GIT_PROGRESS TRUE
     )
     FetchContent_GetProperties(raylib)
     if(NOT raylib_POPULATED)
