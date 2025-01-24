@@ -12,13 +12,13 @@
 
 class Label : public Widget {
 public:
-  Label(const char* text, const Vector2& pos, Font font, int textSize);
+  Label(const char *text, const Vector2 &pos, Font font, int textSize);
 
   void draw() const override;
   void update() override {}
-  
+
   // Setters
-  void setText(const std::string text ) { this->text = text; }
+  void setText(const std::string text) { this->text = text; }
   void setTextSize(int fontSize) { this->textSize = fontSize; }
   void setFont(Font font) { this->font = font; }
 

@@ -6,14 +6,14 @@
 // This is a base class for all screens in the game
 // It is not abstract so that it can be used as a placeholder
 class Screen {
-  public:
-    Screen(); 
+public:
+  Screen();
 
-    void update();
-    void draw();
+  void update();
+  void draw();
 
-  protected:
-    Layout parentLayout;
+protected:
+  Layout parentLayout;
 };
 
 #endif

@@ -3,9 +3,9 @@
 
 int main(void) {
 
-  // Create the game object  
+  // Create the game object
   Screen startScreen = Screen();
-  //const Game game = Game(800, 450, &startScreen);
+  // const Game game = Game(800, 450, &startScreen);
 
   return 0;
 }
