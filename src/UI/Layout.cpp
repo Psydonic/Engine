@@ -23,10 +23,7 @@ void Layout::draw() const {
 }
 
 void Layout::update() {
-  for (auto widget : m_widgets) {
-    widget->update();
-  }
-  layoutWidgets() // TODO execute on resize instead of update
+  layoutWidgets(); 
 }
 
 // based on the aligment and direction properties, this method lays out the
@@ -37,15 +34,10 @@ void Layout::update() {
 void Layout::layoutWidgets() {
   // The parent sets the size and position of the layout, based on it expansion property
 
-  Vector2 pos = position;
-  Vector2 maxSize = {0, 0};
+  Vector2 pos = position; // cursor tracking insert loc
 
   for (auto widget : m_widgets) {
-    maxSize.x = std::max(maxSize.x, widget->getWidth());
-    maxSize.y = std::max(maxSize.y, widget->getHeight());
-  }
-
-  for (auto widget : m_widgets) {
+    // TODO set child widget size based on expansion and bias
     Vector2 widgetSize = widget->getSize();
     Vector2 offset = {0, 0};
 
@@ -65,6 +57,7 @@ void Layout::layoutWidgets() {
 
     Vector2 newPosition = {pos.x + offset.x, pos.y + offset.y};
     widget->setPosition(newPosition);
+    widget->update();
     pos.x += widget->getWidth() + m_padding;
   }
 }
