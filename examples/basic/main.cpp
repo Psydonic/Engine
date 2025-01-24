@@ -1,10 +1,13 @@
 #include "Game.h"
 #include "Screens/Screen.h"
 #include "UI/Label.h"
+
 int main(void) {
 
   // Create the game object
-  Screen startScreen()
+  Screen startScreen();
+  
+  startScreen
     .getUILayout()
     .addWidget(
         Label("Hello")

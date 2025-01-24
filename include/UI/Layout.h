@@ -14,13 +14,9 @@ struct Alignment2 {
 // Direction enum
 enum class Direction { Horizontal, Vertical };
 
-// Expand enum
-enum class Expand { Minimum, Maximum, None };
-
 const int DEFAULT_PADDING = 10;
 const Alignment2 DEFAULT_ALIGNMENT2 = {Alignment::Center, Alignment::Center};
 const Direction DEFAULT_DIRECTION = Direction::Horizontal;
-const Expand DEFAULT_EXPANSION = Expand::Maximum;
 
 // The layout class is a container for widgets. It is a widget itself, so it can
 // be nested in other layouts. It has an alignmenty property that determines how
@@ -53,10 +49,6 @@ public:
   void setDirection(Direction direction) { m_direction = direction; }
   Direction getDirection() const { return m_direction; }
   
-  // Expansion
-  void setExpand(Expand expand) { m_expand = expand; }
-  Expand getExpand() const { return m_expand; }
-  
   void draw() const override;
   void update() override;
 
@@ -67,5 +59,4 @@ protected:
   Alignment2 m_alignment;
   int m_padding;
   Direction m_direction;
-  Expand m_expand;
 };
