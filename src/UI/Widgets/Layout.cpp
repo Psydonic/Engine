@@ -16,14 +16,12 @@ Layout::~Layout() { clearWidgets(); }
 
 void Layout::addWidget(Widget *widget) {
   m_widgets.push_back(widget);
-  layoutWidgets();
 }
 
 void Layout::removeWidget(Widget *widget) {
   auto it = std::find(m_widgets.begin(), m_widgets.end(), widget);
   if (it != m_widgets.end()) {
     m_widgets.erase(it);
-    layoutWidgets();
   }
 }
 
@@ -37,6 +35,7 @@ void Layout::update() {
   for (auto widget : m_widgets) {
     widget->update();
   }
+  layoutWidgets() // TODO execute on resize instead of update
 }
 
 // based on the aligment and direction properties, this method lays out the
