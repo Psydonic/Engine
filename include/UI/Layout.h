@@ -36,22 +36,27 @@ public:
   Layout(const Vector2 &pos, const Vector2 &size);
   ~Layout() { clearWidgets(); }
 
+  // Widget managmenet
   void addWidget(Widget *widget) { m_widgets.push_back(widget); }
   void removeWidget(Widget *widget);
   void clearWidgets() { m_widgets.clear(); }
-
+  
+  // Alignment
   void setAlignment(Alignment2 alignment) { this->m_alignment = alignment; }
   Alignment2 getAlignment() const { return m_alignment; }
-
+  
+  // Padding
   void setPadding(int padding) { m_padding = padding; }
   int getPadding() const { return m_padding; }
 
+  // Direction
   void setDirection(Direction direction) { m_direction = direction; }
   Direction getDirection() const { return m_direction; }
-
+  
+  // Expansion
   void setExpand(Expand expand) { m_expand = expand; }
   Expand getExpand() const { return m_expand; }
-
+  
   void draw() const override;
   void update() override;
 
