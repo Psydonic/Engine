@@ -1,4 +1,4 @@
-#include "UI/Widgets/Layout.h"
+#include "UI/Layout.h"
 #include <algorithm>
 
 // Constuctor - initializes the layout with default values and call the widget

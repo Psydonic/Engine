@@ -1,4 +1,4 @@
-#include "UI/Widgets/Label.h"
+#include "UI/Label.h"
 #include "raylib.h"
 
 // Label constructor (sets size based on texts size)
