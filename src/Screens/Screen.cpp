@@ -4,6 +4,12 @@
 
 Screen::Screen() : parentLayout() {}
 
-void Screen::update() { parentLayout.update(); }
+void Screen::update() { 
+  // Set the parentLayout's size and position
+  parentLayout.setSize({GetScreenWidth(), GetScreenHeight()})
+  // TODO only do this when the window is resized
+
+  parentLayout.update(); 
+}
 
 void Screen::draw() { parentLayout.draw(); }

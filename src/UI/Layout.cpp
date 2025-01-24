@@ -36,6 +36,8 @@ void Layout::update() {
 // widgets will be centered horizontally and vertically inside the layout
 // (second widget to the right of the first one) padding is taken into account
 void Layout::layoutWidgets() {
+  // The parent sets the size and position of the layout, based on it expansion property
+
   Vector2 pos = position;
   Vector2 maxSize = {0, 0};
 

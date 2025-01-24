@@ -11,6 +11,8 @@ public:
   void update();
   void draw();
 
+  Layout getUILayout() { return parentLayout; }
+
 protected:
   Layout parentLayout;
 };
