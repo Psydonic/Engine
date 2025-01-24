@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include "Screens/Screen.h"
 
@@ -26,5 +25,3 @@ private:
   // Function to render the current screen
   void render() const;
 };
-
-#endif // GAME_H

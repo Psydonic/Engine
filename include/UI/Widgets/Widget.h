@@ -1,5 +1,4 @@
-#ifndef WIDGET_H
-#define WIDGET_H
+#pragma once
 
 #include "raylib.h"
 
@@ -28,5 +27,3 @@ protected:
   Vector2 position;
   Vector2 size;
 };
-
-#endif // WIDGET_H

@@ -1,5 +1,4 @@
-#ifndef LAYOUT
-#define LAYOUT
+#pragma once
 
 #include "Widget.h"
 #include <vector>
@@ -60,5 +59,3 @@ protected:
   Direction m_direction;
   Expand m_expand;
 };
-
-#endif // LAYOUT

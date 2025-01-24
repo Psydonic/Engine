@@ -1,5 +1,4 @@
-#ifndef SCREEN_H
-#define SCREEN_H
+#pragma once
 
 #include "../UI/Widgets/Layout.h"
 
@@ -15,5 +14,3 @@ public:
 protected:
   Layout parentLayout;
 };
-
-#endif

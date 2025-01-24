@@ -1,5 +1,4 @@
-#ifndef LABEL_H
-#define LABEL_H
+#pragma once
 
 // A label is a simple text display widget.
 // It can be used to display short, non-editable text strings.
@@ -32,5 +31,3 @@ private:
   int textSize;
   Font font;
 };
-
-#endif // LABEL_H
