@@ -17,6 +17,11 @@ enum class Direction { Horizontal, Vertical };
 // Expand enum
 enum class Expand { Minimum, Maximum, None };
 
+const int DEFAULT_PADDING = 10;
+const Alignment2 DEFAULT_ALIGNMENT2 = {Alignment::Center, Alignment::Center};
+const Direction DEFAULT_DIRECTION = Direction::Horizontal;
+const Expand DEFAULT_EXPANSION = Expand::Maximum;
+
 // The layout class is a container for widgets. It is a widget itself, so it can
 // be nested in other layouts. It has an alignmenty property that determines how
 // the widgets are aligned inside the layout. It has a padding property that
@@ -28,10 +33,10 @@ enum class Expand { Minimum, Maximum, None };
 class Layout : public Widget {
 public:
   Layout();
-  Layout(const Vector2 &pos, const Vector2 &s);
-  virtual ~Layout();
+  Layout(const Vector2 &pos, const Vector2 &size);
+  ~Layout() { clearWidgets(); }
 
-  void addWidget(Widget *widget);
+  void addWidget(Widget *widget) { m_widgets.push_back(widget); }
   void removeWidget(Widget *widget);
   void clearWidgets() { m_widgets.clear(); }
 
