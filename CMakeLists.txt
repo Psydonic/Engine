@@ -16,10 +16,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_library(engine)
 
 # Set raylib version
-set(RAYLIB_VERSION 5.5)
+set(RAYLIB_VERSION 4.5.0)
 
 # Find and include raylib, or build it if not found
-find_package(raylib ${RAYLIB_VERSION} QUIET)
+find_package(raylib ${RAYLIB_VERSION} )
 if(NOT raylib_FOUND)
     message(STATUS "raylib not found, building from source...")
     include(FetchContent)

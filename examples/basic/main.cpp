@@ -5,12 +5,12 @@
 int main(void) {
 
   // Create the game object
-  Screen startScreen();
+  Screen startScreen = Screen();
   
   startScreen
     .getUILayout()
     .addWidget(
-        Label("Hello")
+        &Label("Hello")
         );
   
   const Game game = Game(800, 450, &startScreen);
