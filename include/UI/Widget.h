@@ -14,7 +14,8 @@ const Expand DEFAULT_EXPANSION = Expand::Maximum;
 
 class Widget {
 public:
-  Widget(const Vector2 &pos, const Vector2 &s) : m_position(pos), m_size(s), m_expand(DEFAULT_EXPANSION) {}
+  Widget(const Vector2 &pos = {0, 0}, const Vector2 &s = {0, 0})
+      : m_position(pos), m_size(s), m_expand(DEFAULT_EXPANSION) {}
 
   virtual void draw() const = 0;
   virtual void update() = 0;

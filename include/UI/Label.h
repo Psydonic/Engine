@@ -7,14 +7,18 @@
 
 #include "Widget.h"
 #include "raylib.h"
+#include <optional>
 #include <string>
 
 class Label : public Widget {
 public:
-  Label(const char *text, const Vector2 &pos, Font font, int textSize);
+  Label(const char *text, const Vector2 &pos = {0, 0},
+               std::optional<Font> font = std::nullopt, int textSize = 10)
+      : Widget(pos), text(text),
+        textSize(textSize), font(font) {}
 
   void draw() const override;
-  void update() override {}
+  void update() override;
 
   // Setters
   void setText(const std::string text) { this->text = text; }
@@ -24,10 +28,10 @@ public:
   // Getters
   const std::string getText() const { return text; }
   int getTextSize() const { return textSize; }
-  Font getFont() const { return font; }
+  Font getFont() const { return font.value(); }
 
 private:
   const std::string text;
   int textSize;
-  Font font;
+  std::optional<Font> font;
 };

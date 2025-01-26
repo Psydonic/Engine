@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Widget.h"
+#include <memory>
 #include <vector>
 
 // Alignment enum
@@ -28,12 +29,13 @@ const Direction DEFAULT_DIRECTION = Direction::Horizontal;
 
 class Layout : public Widget {
 public:
-  Layout();
-  Layout(const Vector2 &pos, const Vector2 &size);
+  Layout(Vector2 position = {0,0}, Vector2 size = {0,0})
+      : Widget(position, size), m_alignment(DEFAULT_ALIGNMENT2),
+        m_padding(DEFAULT_PADDING), m_direction(DEFAULT_DIRECTION) {}
   ~Layout() { clearWidgets(); }
 
   // Widget managmenet
-  void addWidget(Widget *widget) { m_widgets.push_back(widget); }
+  void addWidget(std::unique_ptr<Widget> widget) { m_widgets.push_back(std::move(widget)); }
   void removeWidget(Widget *widget);
   void clearWidgets() { m_widgets.clear(); }
   
@@ -55,7 +57,7 @@ public:
 protected:
   void layoutWidgets();
 
-  std::vector<Widget *> m_widgets;
+  std::vector<std::unique_ptr<Widget>> m_widgets;
   Alignment2 m_alignment;
   int m_padding;
   Direction m_direction;

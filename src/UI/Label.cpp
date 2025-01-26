@@ -1,16 +1,20 @@
 #include "UI/Label.h"
 #include "raylib.h"
 
-// Label constructor (sets size based on texts size)
-Label::Label(const char *text, const Vector2 &pos, Font font, int textSize)
-    : Widget(pos, MeasureTextEx(font, text, textSize, 1)), text(text),
-      textSize(textSize), font(font) {}
+// Label update
+void Label::update() {
+  if (!font.has_value()) {
+    font = GetFontDefault();
+  }
+
+  m_size = MeasureTextEx(font.value(), text.c_str(), textSize, 1);
+}
 
 void Label::draw() const {
   // center the text
   Vector2 centered_position = {
-      (float)static_cast<int>(position.x - size.x / 2.0),
-      (float)static_cast<int>(position.y - size.y / 2.0)};
+      (float)static_cast<int>(m_position.x - m_size.x / 2.0),
+      (float)static_cast<int>(m_position.y - m_size.y / 2.0)};
 
-  DrawTextEx(font, text.c_str(), centered_position, textSize, 0, WHITE);
+  DrawTextEx(font.value(), text.c_str(), centered_position, textSize, 0, BLACK);
 }

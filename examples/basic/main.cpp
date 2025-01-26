@@ -10,7 +10,7 @@ int main(void) {
   startScreen
     .getUILayout()
     .addWidget(
-        &Label("Hello")
+        std::make_unique<Label>("Hello")
         );
   
   const Game game = Game(800, 450, &startScreen);
