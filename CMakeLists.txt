@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.15)
 project(engine LANGUAGES CXX)
 
 # Specify C++ standard
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -45,7 +45,7 @@ target_include_directories(engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Source files for the engine
 # Assuming all source files are in the 'src' folder
-file(GLOB ENGINE_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE ENGINE_SRC CONFIGURE_DEPENDS "*.cpp")
 
 # Add sources to the engine library
 target_sources(engine PRIVATE ${ENGINE_SRC})
@@ -55,12 +55,12 @@ target_link_libraries(engine PUBLIC raylib)
 
 # Optional: Add compile definitions or options if needed
 # target_compile_definitions(engine PUBLIC MY_ENGINE_DEFINE)
-# target_compile_options(engine PRIVATE -Wall -Wextra)
+target_compile_options(engine PRIVATE -Wall -Wextra)
 # Build examples if BUILD_EXAMPLE is enabled
 
 option(BUILD_EXAMPLE "Build example executables" ON)
 if(BUILD_EXAMPLE)
-    file(GLOB EXAMPLE_DIRS "examples/*")
+    file(GLOB EXAMPLE_DIRS "examples/**")
 
     # Create an executable for each subdirectory
     foreach(DIR ${EXAMPLE_DIRS})
@@ -72,6 +72,8 @@ if(BUILD_EXAMPLE)
 
         add_executable(${DIR_NAME} ${EXAMPLE_SOURCES})
         target_link_libraries(${DIR_NAME} PUBLIC engine)
+        target_compile_options(${DIR_NAME} PRIVATE -Wall -Wextra)
+
     endforeach()
     
 endif()
