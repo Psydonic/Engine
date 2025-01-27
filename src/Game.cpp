@@ -3,8 +3,7 @@
 
 // Constructor with start screen
 Game::Game(int screenWidth, int screenHeight, Screen *startScreen)
-    : screenWidth(screenWidth), screenHeight(screenHeight),
-      m_currentScreen(startScreen) {
+    : m_currentScreen(startScreen) {
   InitWindow(screenWidth, screenHeight,
              "raylib [core] example - basic screen manager");
   SetTargetFPS(60);

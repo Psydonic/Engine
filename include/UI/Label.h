@@ -13,7 +13,7 @@
 class Label : public Widget {
 public:
   Label(const char *text, const Vector2 &pos = {0, 0},
-               std::optional<Font> font = std::nullopt, int textSize = 10)
+               std::optional<Font> font = std::nullopt, int textSize = 50)
       : Widget(pos), text(text),
         textSize(textSize), font(font) {}
 
@@ -31,7 +31,7 @@ public:
   Font getFont() const { return font.value(); }
 
 private:
-  const std::string text;
+  std::string text;
   int textSize;
   std::optional<Font> font;
 };

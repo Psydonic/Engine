@@ -16,6 +16,10 @@ class Widget {
 public:
   Widget(const Vector2 &pos = {0, 0}, const Vector2 &s = {0, 0})
       : m_position(pos), m_size(s), m_expand(DEFAULT_EXPANSION) {}
+  virtual ~Widget() {}
+
+  Widget(const Widget&) = delete;
+  Widget(Widget&&) = delete;
 
   virtual void draw() const = 0;
   virtual void update() = 0;

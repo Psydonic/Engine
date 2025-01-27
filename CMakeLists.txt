@@ -1,5 +1,5 @@
-# Minimum CMake version required
-cmake_minimum_required(VERSION 3.15)
+# Minimum CMake version required (min and max)
+cmake_minimum_required(VERSION 3.10...3.31.5)
 
 # Project name and type
 project(engine LANGUAGES CXX)
@@ -16,7 +16,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_library(engine)
 
 # Set raylib version
-set(RAYLIB_VERSION 4.5.0)
+set(RAYLIB_VERSION 5.5)
 
 # Find and include raylib, or build it if not found
 find_package(raylib ${RAYLIB_VERSION} )
@@ -26,17 +26,24 @@ if(NOT raylib_FOUND)
 
     Set(FETCHCONTENT_QUIET FALSE)
     FetchContent_Declare(
-        raylib
-        GIT_REPOSITORY https://github.com/raysan5/raylib.git
-        GIT_TAG ${RAYLIB_VERSION}
-        GIT_PROGRESS TRUE
+      raylib
+      DOWNLOAD_EXTRACT_TIMESTAMP OFF
+      URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
     )
     FetchContent_GetProperties(raylib)
     if(NOT raylib_POPULATED)
-        FetchContent_Populate(raylib)
-        add_subdirectory(${raylib_SOURCE_DIR} ${raylib_BINARY_DIR})
+      FetchContent_MakeAvailable(raylib)
+      set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
     endif()
 endif()
+
+# Web configuration
+if(${PLATFORM} STREQUAL "Web")
+    set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY -s GL_ENABLE_GET_PROC_ADDRESS=1")
+endif()
+
+
 
 # Include directories for the engine
 # Assuming the engine's header files are in the 'include' folder

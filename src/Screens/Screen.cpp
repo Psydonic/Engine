@@ -6,7 +6,7 @@ Screen::Screen() : parentLayout() {}
 
 void Screen::update() {
   // Set the parentLayout's size and position
-  parentLayout.setSize({GetScreenWidth(), GetScreenHeight()});
+  parentLayout.setSize({static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight())});
 
   parentLayout.update();
 }

@@ -16,8 +16,7 @@ public:
 
 private:
   Screen *m_currentScreen; // Pointer to the current screen
-  const int screenWidth;
-  const int screenHeight;
+
 
   // Function to update the game state
   void update();

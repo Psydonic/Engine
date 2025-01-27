@@ -28,30 +28,58 @@ void Layout::update() {
 void Layout::layoutWidgets() {
   // The parent sets the size and position of the layout, based on it expansion property
 
-  Vector2 pos = m_position; // cursor tracking insert loc
+  if (m_widgets.empty()) return;
 
+  // Calculate the total size of all widgets
+  float totalWidth = 0, totalHeight = 0;
   for (const auto& widget : m_widgets) {
-    // TODO set child widget size based on expansion and bias
-    Vector2 widgetSize = widget->getSize();
-    Vector2 offset = {0, 0};
+    totalWidth += widget->getWidth();
+    totalHeight += widget->getHeight();
+  }
 
+  // Calculate the available space
+  float availableWidth = getWidth();
+  float availableHeight = getHeight();
+
+  // Calculate the padding
+  float horizontalPadding = getPadding();
+  float verticalPadding = getPadding();
+
+  // Adjust available space for padding
+  availableWidth -= horizontalPadding;
+  availableHeight -= verticalPadding;
+
+  // Calculate the space between widgets
+  float spaceBetweenWidgets = 0;
+  if (m_direction == Direction::Horizontal && m_widgets.size() > 1) {
+    spaceBetweenWidgets = (availableWidth - totalWidth) / (m_widgets.size() - 1);
+  } else if (m_direction == Direction::Vertical && m_widgets.size() > 1) {
+    spaceBetweenWidgets = (availableHeight - totalHeight) / (m_widgets.size() - 1);
+  }
+
+  // Calculate the starting position
+  float startX = 0, startY = 0;
+  if (m_alignment.x == Alignment::Center) {
+    startX = (availableWidth - totalWidth - spaceBetweenWidgets * (m_widgets.size() - 1)) / 2;
+  } else if (m_alignment.x == Alignment::End) {
+    startX = availableWidth - totalWidth - spaceBetweenWidgets * (m_widgets.size() - 1);
+  }
+  if (m_alignment.y == Alignment::Center) {
+    startY = (availableHeight - totalHeight - spaceBetweenWidgets * (m_widgets.size() - 1)) / 2;
+  } else if (m_alignment.y == Alignment::End) {
+    startY = availableHeight - totalHeight - spaceBetweenWidgets * (m_widgets.size() - 1);
+  }
+
+  // Position and size each widget
+  float currentX = startX, currentY = startY;
+  for (auto& widget : m_widgets) {
     if (m_direction == Direction::Horizontal) {
-      if (m_alignment.x == Alignment::Center) {
-        offset.x = (maxSize.x - widgetSize.x) / 2;
-      } else if (m_alignment.x == Alignment::End) {
-        offset.x = maxSize.x - widgetSize.x;
-      }
+      widget->setPosition({currentX, startY});
+      currentX += widget->getWidth() + spaceBetweenWidgets;
     } else if (m_direction == Direction::Vertical) {
-      if (m_alignment.y == Alignment::Center) {
-        offset.y = (maxSize.y - widgetSize.y) / 2;
-      } else if (m_alignment.y == Alignment::End) {
-        offset.y = maxSize.y - widgetSize.y;
-      }
+      widget->setPosition({startX, currentY});
+      currentY += widget->getHeight() + spaceBetweenWidgets;
     }
-
-    Vector2 newPosition = {pos.x + offset.x, pos.y + offset.y};
-    widget->setPosition(newPosition);
     widget->update();
-    pos.x += widget->getWidth() + m_padding;
   }
 }
